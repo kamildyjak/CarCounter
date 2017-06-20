@@ -1,4 +1,7 @@
 *.vcxproj
 x64/
+Debug/
 *.filters
 CarDetector.vcxproj.user
+CarCounter.vcxproj.user
+*.resx

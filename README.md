@@ -6,4 +6,5 @@ Za pomocą tych narzędzi stworzyłem licznik przejeżdzających samochódów na
 
 Tak prezentuje się altualna wersja aplikacji        
 
-![alt text](https://github.com/kamildyjak/CarCounter/blob/master/image.png)
+![Main GUI](https://github.com/kamildyjak/CarCounter/blob/master/image.png)
+![Debug](https://github.com/kamildyjak/CarCounter/blob/master/Debug.jpg)

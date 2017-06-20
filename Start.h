@@ -60,6 +60,7 @@ namespace CarCounter {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Start::typeid));
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -92,13 +93,13 @@ namespace CarCounter {
 			this->textBox1->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->textBox1->BackColor = System::Drawing::SystemColors::Control;
 			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Geogrotesque Rg", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"Geogrotesque Rg", 21, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(115, 155);
+			this->textBox1->Location = System::Drawing::Point(115, 157);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(357, 37);
+			this->textBox1->Size = System::Drawing::Size(357, 35);
 			this->textBox1->TabIndex = 1;
-			this->textBox1->Text = L"Witamy w aplikacji CarCount!";
+			this->textBox1->Text = L"Witamy w aplikacji CarCounter!";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &Start::textBox1_TextChanged_1);
 			// 
@@ -121,6 +122,7 @@ namespace CarCounter {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(584, 461);
 			this->Controls->Add(this->tableLayoutPanel1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(600, 500);
 			this->MinimumSize = System::Drawing::Size(600, 500);

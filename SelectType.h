@@ -58,6 +58,7 @@ namespace CarCounter {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(SelectType::typeid));
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->button2 = (gcnew System::Windows::Forms::Button());
@@ -118,7 +119,7 @@ namespace CarCounter {
 			this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
 			this->tableLayoutPanel2->RowCount = 1;
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
-			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 236)));
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 184)));
 			this->tableLayoutPanel2->Size = System::Drawing::Size(271, 184);
 			this->tableLayoutPanel2->TabIndex = 3;
 			this->tableLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &SelectType::tableLayoutPanel2_Paint);
@@ -170,6 +171,7 @@ namespace CarCounter {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(584, 461);
 			this->Controls->Add(this->tableLayoutPanel1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(600, 500);
 			this->MinimumSize = System::Drawing::Size(600, 500);

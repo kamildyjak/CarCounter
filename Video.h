@@ -63,6 +63,7 @@ namespace CarCounter {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Video::typeid));
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -157,6 +158,7 @@ namespace CarCounter {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(584, 461);
 			this->Controls->Add(this->tableLayoutPanel1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(600, 500);
 			this->MinimumSize = System::Drawing::Size(600, 500);

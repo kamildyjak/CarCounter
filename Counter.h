@@ -64,6 +64,7 @@ namespace CarCounter {
 	private: bool stop = false;
 	public: bool cam = false;
 	public: int camType = 0;
+	private: bool debug = false;
 	protected:
 
 	protected:
@@ -81,6 +82,7 @@ namespace CarCounter {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Counter::typeid));
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->endButton = (gcnew System::Windows::Forms::Button());
@@ -141,8 +143,8 @@ namespace CarCounter {
 			this->tableLayoutPanel2->Location = System::Drawing::Point(148, 297);
 			this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
 			this->tableLayoutPanel2->RowCount = 2;
-			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 46.95122F)));
-			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 53.04878F)));
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 43.90244F)));
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 56.09756F)));
 			this->tableLayoutPanel2->Size = System::Drawing::Size(251, 164);
 			this->tableLayoutPanel2->TabIndex = 10;
 			// 
@@ -151,8 +153,8 @@ namespace CarCounter {
 			this->endButton->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->endButton->Font = (gcnew System::Drawing::Font(L"Geogrotesque Rg", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->endButton->Location = System::Drawing::Point(46, 101);
-			this->endButton->Margin = System::Windows::Forms::Padding(3, 25, 3, 3);
+			this->endButton->Location = System::Drawing::Point(46, 87);
+			this->endButton->Margin = System::Windows::Forms::Padding(3, 15, 3, 3);
 			this->endButton->Name = L"endButton";
 			this->endButton->Size = System::Drawing::Size(159, 43);
 			this->endButton->TabIndex = 8;
@@ -212,6 +214,7 @@ namespace CarCounter {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(584, 461);
 			this->Controls->Add(this->tableLayoutPanel1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(600, 500);
 			this->MinimumSize = System::Drawing::Size(600, 500);
@@ -244,7 +247,12 @@ namespace CarCounter {
 	
 	}
 private: System::Void endButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	Application::Exit();
+	if (!fail) {
+		debug = !debug;
+	}
+	else {
+		Application::Exit();
+	}
 }
 private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }

@@ -139,7 +139,8 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 	else {
 		textBox1->Text = "Wszystko dzia³a!";
 		button1->Text = "Zakoñcz";
-		endButton->Visible = false;
+		endButton->Text = "Debuguj";
+		endButton->Visible = true;
 		this->Show();
 	}
 
@@ -158,19 +159,18 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 	vector<Blob> cars;
 
 	bool first = true;
-	bool debug = false;
 
 	cv::Point crossingLine[2];
 
 	cap >> frame;
 	cap >> frame1;
 
-	int intHorizontalLinePosition = (int)std::round((double)frame.rows * 0.60);
+	int horizontalLinePosition = (int)std::round((double)frame.rows * 0.60);
 	crossingLine[0].x = 0;
-	crossingLine[0].y = intHorizontalLinePosition;
+	crossingLine[0].y = horizontalLinePosition;
 
 	crossingLine[1].x = frame.cols - 1;
-	crossingLine[1].y = intHorizontalLinePosition;
+	crossingLine[1].y = horizontalLinePosition;
 
 
 	while (!frame1.empty()) {
@@ -251,7 +251,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 				putText(final, to_string(cars[i]._id), cars[i]._position, FONT_HERSHEY_SIMPLEX, 1, COLOR_WHITE, 2);
 				rectangle(final, cars[i]._boundingRect, COLOR_BLUE, 2);
 			}
-			if (cars[i]._prevPosition.y > intHorizontalLinePosition && cars[i]._position.y <= intHorizontalLinePosition) {
+			if (cars[i]._prevPosition.y > horizontalLinePosition && cars[i]._position.y <= horizontalLinePosition) {
 				carCount++;
 				crossed = true;
 			}
@@ -276,7 +276,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 		frame = frame1.clone();
 		cap >> frame1;
 
-		int key = waitKey(10);
+		int key = waitKey(fps);
 		if (key == 27 || frame.empty() || stop) {
 			cap.release();
 			cvDestroyAllWindows();

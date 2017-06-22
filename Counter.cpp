@@ -197,7 +197,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 
 		absdiff(frame_gray, frame1_gray, diff);
 
-		threshold(diff, thresh, 35, 255, CV_THRESH_BINARY);
+		threshold(diff, thresh, 50, 255, CV_THRESH_BINARY);
 
 		if (debug)
 			imshow("thresh", thresh);
@@ -283,7 +283,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 
 		if (!frame1.empty()) {
 			imshow("f", final);
-			imshow("best", best);
+			//imshow("best", best);
 		}
 
 		if(!bestEnable)

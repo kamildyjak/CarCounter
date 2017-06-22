@@ -154,6 +154,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 	namedWindow("contours", CV_WINDOW_AUTOSIZE);
 	namedWindow("cars", CV_WINDOW_AUTOSIZE);
 	namedWindow("convexHulls", CV_WINDOW_AUTOSIZE);
+	namedWindow("best", CV_WINDOW_AUTOSIZE);
 
 	vector<Blob> currentBlobs;
 	vector<Blob> cars;
@@ -172,6 +173,10 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 	crossingLine[1].x = frame.cols - 1;
 	crossingLine[1].y = horizontalLinePosition;
 
+	Mat best;
+	bool bestEnable = false;
+
+	best = frame.clone();
 
 	while (!frame1.empty()) {
 
@@ -184,7 +189,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 
 		currentBlobs.clear();
 
-		cvtColor(frame, frame_gray, CV_BGR2GRAY);
+		cvtColor(best, frame_gray, CV_BGR2GRAY);
 		cvtColor(frame1, frame1_gray, CV_BGR2GRAY);
 
 		GaussianBlur(frame_gray, frame_gray, cv::Size(5, 5), 0);
@@ -192,7 +197,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 
 		absdiff(frame_gray, frame1_gray, diff);
 
-		threshold(diff, thresh, 30, 255, CV_THRESH_BINARY);
+		threshold(diff, thresh, 35, 255, CV_THRESH_BINARY);
 
 		if (debug)
 			imshow("thresh", thresh);
@@ -225,6 +230,7 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 			}
 		}
 
+
 		if (debug)
 			showBlobs(thresh_copy.size(), currentBlobs, "convexHulls");
 
@@ -239,10 +245,15 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 			compareAndMatch(cars, currentBlobs);
 		}
 
+		if (countNonZero(thresh) < 10) {
+			best = frame1.clone();
+			bestEnable = true;
+		}
+
 		if (debug)
 			showBlobs(thresh.size(), cars, "cars");
 
-		Mat final = frame.clone();
+		Mat final = frame1.clone();
 
 		bool crossed = false;
 
@@ -270,10 +281,13 @@ int CarCounter::Counter::start(string src, bool cam, int type) {
 
 		errorBox->Text = "Liczba samochodów: " + Convert::ToString(carCount);
 
-		if (!frame.empty())
+		if (!frame1.empty()) {
 			imshow("f", final);
+			imshow("best", best);
+		}
 
-		frame = frame1.clone();
+		if(!bestEnable)
+			best = frame1.clone();
 		cap >> frame1;
 
 		int key = waitKey(fps);
